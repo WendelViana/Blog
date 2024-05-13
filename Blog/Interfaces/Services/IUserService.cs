@@ -1,15 +1,15 @@
-﻿using Blog.Dtos;
+﻿using Blog.Entities;
 
 namespace Blog.Interfaces.Services
 {
     public interface IUserService
     {
-        bool Add(UserDto userDto);
-        UserDto GetUser(int id);
-        List<UserDto> GetUsers();   
-        UserDto GetUserByUsername(string username);
+        bool Add(UserEntity UserEntity);
+        UserEntity? GetUser(int id);
+        List<UserEntity>? GetUsers();
+        UserEntity? GetUserByUsername(string username);
         bool Delete(int id);
-        bool Update(UserDto userDto);
-        UserDto Login(string login, string password);
+        bool Update(UserEntity UserEntity);
+        UserEntity? Login(string login, string password);
     }
 }

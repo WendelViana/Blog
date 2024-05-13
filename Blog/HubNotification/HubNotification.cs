@@ -1,14 +1,25 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace Blog.HubNotification
+namespace Blog.Hubs
 {
-    public class HubNotification: Hub
+    public interface IMessageHubClient
     {
-        public HubNotification() { }
+        Task SendOffersToUser(List<string> message);
+    }
 
-        public async Task SendNotification(string message)
+    public class MessageHub : Hub<IMessageHubClient>
+    {
+        public async Task SendOffersToUser(List<string> message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", message);
+            await Clients.All.SendOffersToUser(message);
+        }
+    }
+
+    public sealed class HubNotification: Hub
+    {
+        public async Task SendMessage(string message)
+        {
+            await Clients.All.SendAsync("SendMessage", message);
         }
     }
 }
